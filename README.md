@@ -1,3 +1,3 @@
 # Group_12_Assignment
-Created fot BITS WILP Project
+Created for BITS WILP Project
 Group no 12
