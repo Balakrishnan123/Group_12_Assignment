@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:shopping_cart_app/screens/product_list.dart';
 
 class MyStatefulWidget extends StatefulWidget {
@@ -38,6 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
+                key: Key('username_field'),
                 controller: nameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -48,6 +50,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
+              key: Key('password_field'),
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
@@ -66,39 +69,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
+                key: Key('login_button'),
                   child: const Text('Login'),
                   onPressed: () {
                     print(nameController.text);
                     print(passwordController.text);
-                    if (nameController.text == "cpa_assignment1" &&
-                        passwordController.text == "group_12") {
+                    final isValidLogin = validateLogin();
+                    if (isValidLogin) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const ProductList()));
-                    }else{
-                      showDialog(
-                          context: context, builder: (BuildContext ctx)
-                           =>  AlertDialog(
-                          title: const Text("Invalid Credentials"),
-                          content: const Text("The provided username or password incorrect"),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Container(
-                                  color: Colors.blue,
-                                  padding: const EdgeInsets.all(14),
-                                  child: const Text("okay"),
-                                ),
-                              ),
-                            ],
-
-
-
-                    ),
-                    );
+                    } else {
+                      showErrorDialog(context, 'Invalid username or password');
                     }
                   }
                 ),
@@ -122,3 +105,31 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ));
   }
 }
+bool validateLogin() {
+  // Replace with your own login validation logic
+  final username = 'cpa_assignment1';
+  final password = 'group_12';
+  final enteredUsername = (find.byKey(Key('username_field')).evaluate().first.widget as TextField).controller?.text;
+  final enteredPassword = (find.byKey(Key('password_field')).evaluate().first.widget as TextField).controller?.text;
+  return (enteredUsername == username && enteredPassword == password);
+}
+void showErrorDialog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Error'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+

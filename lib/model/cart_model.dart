@@ -30,6 +30,10 @@ class Cart {
         unitTag = data['unitTag'],
         image = data['image'];
 
+  get name => null;
+
+  get price => null;
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,

@@ -1,0 +1,6 @@
+projectKey=devops_assignment
+serverUrl=http://localhost:9000
+serverVersion=9.9.0.65466
+dashboardUrl=http://localhost:9000/dashboard?id=devops_assignment
+ceTaskId=AYbRICdNc2xaR1KI_9_x
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYbRICdNc2xaR1KI_9_x

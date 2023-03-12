@@ -12,8 +12,8 @@ class CartProvider with ChangeNotifier {
 
   double _totalPrice = 0.0;
   double get totalPrice => _totalPrice;
-
   List<Cart> cart = [];
+
 
   Future<List<Cart>> getData() async {
     cart = await dbHelper.getCartList();

@@ -54,7 +54,6 @@ class _ProductListState extends State<ProductList> {
         image: 'assets/images/fruitBasket.png'),
   ];
 
-  //List<bool> clicked = List.generate(10, (index) => false, growable: true);
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
