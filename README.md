@@ -2,3 +2,4 @@
 Hi everyone,
 This is repo for shopping cart application for group 12 assignment.
 Flutter deplyment update
+Auto deployment through Github
